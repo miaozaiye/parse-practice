@@ -1,0 +1,98 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block grid %}
+<div class="ui equal width grid" style = "width:60%;margin:5px 5px 5px 5px;">
+  <div class="row">
+      <div class="column">
+        <div class="ui segment">
+            <div class="ui statistic">
+                <div class="value"> {{ wb_data_all.paginator.num_pages }} </div>
+                <div class="label">pages </div>
+            </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui segment">
+           <div class="ui statistic">
+                <div class="value">{{ counts_all }} </div>
+                <div class="label">文章 </div>
+            </div>
+        </div>
+
+      </div>
+      </div>
+
+<div class="ui container segment">
+    <div class="ui compact menu">
+        <div class="ui simple dropdown item">
+        分类
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <div class="item">全部</div>
+            <div class="item" id="wb"><a href="http://127.0.0.1:8000/sslkwb/">外包</a></div>
+            <div class="item" id="hd"><a href="http://127.0.0.1:8000/sslkcxy/">程序员</a></div>
+            <div class="item">兼职</div>
+            <div class="item">共享经济</div>
+
+        </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+  {% for item in wb_data_all %}
+
+
+  <div class="row">
+      <div class="column">
+    <div class="ui segment">
+      <div class="ui divided items">
+        <div class="item">
+
+            <div class="content">
+                <a class="header" href="{{ item.link }}">{{ item.title }}</a>
+              <div class="meta">
+                <span class="cinema">{{ item.content }}</span>
+              </div>
+            <div class="description">
+            <p>{{ item.question }}</p>
+            </div>
+            <div class="extra">
+                {% for tag in item.tags %}
+                <div class="ui label">{{ tag }}</div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+        </div>
+
+      </div>
+
+      </div>
+
+  </div>
+    {% endfor %}
+
+
+
+<div class="ui pagination menu" style="margin:5px,5px,5px,5px">
+    {% if wb_data_all.has_previous %}
+    <a class="active item" href="?page={{ wb_data_all.previous_page_number }}"><</a>
+    {% endif %}
+        <div class="disable item">
+               page {{ wb_data_all.number }} of {{ wb_data_all.paginator.num_pages }}
+        </div>
+    {% if wb_data_all.has_next %}
+    <a class="item" href="?page={{ wb_data_all.next_page_number }}">></a>
+     {% endif %}
+</div>
+
+
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{%  block grid %}
+<div class="ui container segment">
+    <div class="ui compact menu">
+        <div class="ui simple dropdown item">
+        Area
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            <div class="item" id="cy">36氪数据统计</div>
+            <div class="item" id="hd">海淀</div>
+            <div class="item">通州</div>
+
+        </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="ui container" id="chart1"></div>
+
+{% endblock %}
+
+{% block chartjs %}
+
+<script>
+    $('#cy').click(
+    function () {
+   $('#chart1').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: '36氪'
+        },
+        subtitle: {
+            text: '数据图表'
+        },
+        xAxis: {
+            categories: ['Nov15','Dec15','Jan16','Feb16', 'Mar16'],
+            
+        },
+
+        yAxis: {
+            min: 0,
+            title: {
+                text: '数量'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} 次</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series:{{ chart_CY|safe }}
+    });
+});
+</script>
+
+    <script>
+$('#hd').click(
+   function () {
+    $('#chart1').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: '海淀'
+        },
+        subtitle: {
+            text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        },
+        xAxis: {
+            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Population (millions)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{'type': 'column', 'data': [4], 'name': '共享经济'}, {'type': 'column', 'data': [12], 'name': '远程'}, {'type': 'column', 'data': [2], 'name': '程序员'}, {'type': 'column', 'data': [4], 'name': '兼职'}, {'type': 'column', 'data': [12], 'name': '外包'}]
+[{'type': 'column', 'data': [1], 'name': '共享经济'}, {'type': 'column', 'data': [4], 'name': '远程'}, {'type': 'column', 'data': [3], 'name': '程序员'}, {'type': 'column', 'data': [5], 'name': '兼职'}, {'type': 'column', 'data': [7], 'name': '外包'}]
+    });
+});
+
+    </script>
+
+{%  endblock %}
