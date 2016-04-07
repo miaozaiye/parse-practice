@@ -2,6 +2,7 @@
 from django.shortcuts import render
 from zhihu_parse.models import wb_data,zhihu1,sslk
 from django.core.paginator import Paginator
+import time
 # Create your views here.
 
 #不同区域发帖量前三名
@@ -144,6 +145,21 @@ def sslkcxy(request):
     }
 
     return render(request, "sslk_cxy.html",context)
+
+def sslknew(request):
+    limit = 10
+    webinfo_new=sslk(ipt_time = time.strftime("%Y-%m-%d", time.localtime()))
+    paginator_new = Paginator(webinfo_new,limit)
+    page_new = request.GET.get('page',1)
+    loaded_new = paginator_new.page(page_new)
+
+    context={
+        'wb_data_new':loaded_new,
+        'counts_new':webinfo_new.count(),
+        'last_time_cxy':webinfo_new.order_by('-date_time').limit(1),
+    }
+
+    return render(request, "sslk_new.html",context)
 # waibao = sslk(cat = '外包')
 #
 # for item in waibao[:10]:

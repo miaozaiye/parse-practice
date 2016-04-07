@@ -39,7 +39,8 @@ def get_sslk(cat):
             date_modified = date_time.split(' ')[0]
             tags = ['36kr',cat,timeago]
             content = content.get_text()
-            sslk3.insert_one({'cat':cat,'date_modified':date_modified,'link':link,'title':title,'tags':tags,'date_time':timeago,'content':content})
+            ipt_time = time.strftime("%Y-%m-%d", time.localtime())  #每个新获取的信息,增加当时时间信息
+            sslk3.insert_one({'ipt_time':ipt_time,'cat':cat,'date_modified':date_modified,'link':link,'title':title,'tags':tags,'date_time':timeago,'content':content})
             linkexists3.insert_one({'link':link})
         # print (title,link,tags)
         # print (content.get_text())

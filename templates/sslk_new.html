@@ -7,7 +7,7 @@
       <div class="column">
         <div class="ui segment">
             <div class="ui statistic">
-                <div class="value"> {{ wb_data_cxy.paginator.num_pages }} </div>
+                <div class="value"> {{ wb_data_new.paginator.num_pages }} </div>
                 <div class="label">pages </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
         <i class="dropdown icon"></i>
         <div class="menu">
             <div class="item" id="all"><a href="http://127.0.0.1:8000/index/">全部</a></div>
-            <div class="item" id="wb"><a href = "http://127.0.0.1:8000/sslknew/">今日更新</a></div>
+            <div class="item" id="wb"><a href = #>今日更新</a></div>
             <div class="item" id="wb"><a href = "http://127.0.0.1:8000/sslkwb/">外包</a></div>
             <div class="item" id="hd">程序员</div>
             <div class="item">兼职</div>
@@ -46,7 +46,7 @@
 
 
 
-  {% for item in wb_data_cxy %}
+  {% for item in wb_data_new %}
 
 
   <div class="row">
@@ -82,14 +82,14 @@
 
 
 <div class="ui pagination menu" style="margin:5px,5px,5px,5px">
-    {% if wb_data_cxy.has_previous %}
-    <a class="active item" href="?page={{ wb_data_cxy.previous_page_number }}"><</a>
+    {% if wb_data_new.has_previous %}
+    <a class="active item" href="?page={{ wb_data_new.previous_page_number }}"><</a>
     {% endif %}
         <div class="disable item">
-               page {{ wb_data_cxy.number }} of {{ wb_data_cxy.paginator.num_pages }}
+               page {{ wb_data_new.number }} of {{ wb_data_new.paginator.num_pages }}
         </div>
-    {% if wb_data_cxy.has_next %}
-    <a class="item" href="?page={{ wb_data_cxy.next_page_number }}">></a>
+    {% if wb_data_new.has_next %}
+    <a class="item" href="?page={{ wb_data_new.next_page_number }}">></a>
      {% endif %}
 </div>
 
