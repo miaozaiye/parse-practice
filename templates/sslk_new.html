@@ -7,7 +7,7 @@
       <div class="column">
         <div class="ui segment">
             <div class="ui statistic">
-                <div class="value"> {{ wb_data_all.paginator.num_pages }} </div>
+                <div class="value"> {{ wb_data_new.paginator.num_pages }} </div>
                 <div class="label">pages </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
       <div class="column">
         <div class="ui segment">
            <div class="ui statistic">
-                <div class="value">{{ counts_all }} </div>
+                <div class="value">{{ counts_cxy }} </div>
                 <div class="label">文章 </div>
             </div>
         </div>
@@ -29,9 +29,9 @@
         分类
         <i class="dropdown icon"></i>
         <div class="menu">
-            <div class="item">全部</div>
-            <div class="item" id="wb"><a href = "http://127.0.0.1:8000/sslknew/">今日更新</a></div>
-            <div class="item" id="wb"><a href="http://127.0.0.1:8000/sslkwb/">外包</a></div>
+            <div class="item" id="all"><a href="http://127.0.0.1:8000/index/">全部</a></div>
+            <div class="item" id="wb"><a href = #>今日更新</a></div>
+             <div class="item" id="wb"><a href="http://127.0.0.1:8000/sslkwb/">外包</a></div>
             <div class="item" id="hd"><a href="http://127.0.0.1:8000/sslkcxy/">程序员</a></div>
             <div class="item">兼职</div>
             <div class="item">共享经济</div>
@@ -44,7 +44,9 @@
 
 
 
-  {% for item in wb_data_all %}
+
+
+  {% for item in wb_data_new %}
 
 
   <div class="row">
@@ -80,14 +82,14 @@
 
 
 <div class="ui pagination menu" style="margin:5px,5px,5px,5px">
-    {% if wb_data_all.has_previous %}
-    <a class="active item" href="?page={{ wb_data_all.previous_page_number }}"><</a>
+    {% if wb_data_new.has_previous %}
+    <a class="active item" href="?page={{ wb_data_new.previous_page_number }}"><</a>
     {% endif %}
         <div class="disable item">
-               page {{ wb_data_all.number }} of {{ wb_data_all.paginator.num_pages }}
+               page {{ wb_data_new.number }} of {{ wb_data_new.paginator.num_pages }}
         </div>
-    {% if wb_data_all.has_next %}
-    <a class="item" href="?page={{ wb_data_all.next_page_number }}">></a>
+    {% if wb_data_new.has_next %}
+    <a class="item" href="?page={{ wb_data_new.next_page_number }}">></a>
      {% endif %}
 </div>
 

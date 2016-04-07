@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from zhihu_parse.views import index,zhihu,chart,sslkwb,sslkcxy
+from zhihu_parse.views import index,zhihu,chart,sslkwb,sslkcxy,sslknew
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^chart/',chart),
     url(r'^sslkwb/',sslkwb),
     url(r'^sslkcxy/',sslkcxy),
+    url(r'^sslknew/',sslknew),
 ]
