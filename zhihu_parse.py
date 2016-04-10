@@ -71,8 +71,11 @@ get_sslk('私活')
 get_sslk('程序员')
 get_sslk('远程')
 get_sslk('共享经济')
-
+get_sslk('bot')
 print(sslk3.find().count())
+
+
+
 
 
 def get_ZH(url_ZH):
